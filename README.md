@@ -67,39 +67,6 @@ Each single audio file would have a varying length of fundamental frequency depe
 
 ## extract_and_save_bin_to(...) function
 
-Due to the large amount of data to process, and to allow our VAE model to run faster, we converted the featured dimensions of each {}.wav file into a {}.bin binary file:
-```
-#dir_to_wav = '/content/drive/My Drive/dataset/vcc2016/wav/'
-#dir_to_bin = '/content/drive/My Drive/dataset/vcc2016/bin/'
-#dir_to_source = dir_to_wav
-def extract_and_save_bin_to(dir_to_bin, dir_to_source):
-    sets = [s for s in os.listdir(dir_to_source) if s in SETS] # create 2 directories: ['Training Set', 'Testing Set']
-    for d in sets:
-            path = join(dir_to_source, d) # create path for the 2 directories
-            speakers = [s for s in os.listdir(path) if s in SPEAKERS] # The respective speakers in the training and testing set
- 
-            for s in speakers:
-                        path = join(dir_to_source, d, s)
-                        #print(path) #eg: /content/drive/My Drive/dataset/vcc2016/wav/Training Set/SF1
-                       
-                        output_dir = join(dir_to_bin, d, s)
-                        if not tf.gfile.Exists(output_dir): # create bin file if non-existent in the first place
-                            tf.gfile.MakeDirs(output_dir)
-                        for f in os.listdir(path): # for each entry in the path
-                            filename = join(path, f) # create path for EVERY SINGLE WAV FILES IN THE WAV DIRECTORY
-                            #print(filename)
-                            if not os.path.isdir(filename): # if False, then conduct analysis
-                                                features = analysis(filename)
-                                                labels = SPEAKERS.index(s) * np.ones(
-                                                    [features.shape[0], 1],
-                                                    np.float32,
-                                                )
-                                                b = os.path.splitext(f)[0] # the ROOT of the file eg. soundfile NUMBER
-                                                features = np.concatenate([features, labels], 1) #The WORLD vocdoer features and the speaker label are stored in binary format.
-                                                                                                # Format: [[s1, s2, ..., s513, a1, ..., a513, f0, en, spk],
-                                                                                                          #[s1, s2, ..., s513, a1, ..., a513, f0, en, spk],
-                                                                                                          #...,
-                                                                                                          #[s1, s2, ..., s513, a1, ..., a513, f0, en, spk]]
-                                                with open(join(output_dir, '{}.bin'.format(b)), 'wb') as fp:
-                                                    fp.write(features.tostring())
-```
+Due to the large amount of data to process, and to allow our VAE model to run faster, we converted the featured dimensions of each {}.wav file into a {}.bin binary file.
+
+However, for the sake of better visualization, 
