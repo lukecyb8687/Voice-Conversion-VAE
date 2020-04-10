@@ -65,10 +65,9 @@ In this function, we use the *librosa* package to acquire the amplitude and samp
 
 Each single audio file would have a varying length of fundamental frequency depending on the length of the audio. For example: For SF1/100001.wav, we have 704 instances of f0. While for SF1/100002.wav, we have 216 instances of f0. This is because the audio duration for SF1/100001.wav is longer than SF1/100001.wav. However, the featured dimensions remain the same: For each instance of f0, we still have 513 instances of SP and 513 instances of AP.
 
-For example, in SF1/100002.wav, for a f0 = 212.431344, the spectral envelope is as such:
+For example, in SF1/100002.wav, for a f0 = 212.431344 Hz, the spectral envelope is as such:
 ![alt text](https://github.com/lukecyb8687/Voice-Conversion-VAE/blob/master/raw/SPexample.png)
 ## extract_and_save_bin_to(...) function
 
 Due to the large amount of data to process, and to allow our VAE model to run faster, we converted the featured dimensions of each {}.wav file into a {}.bin binary file.
 
-However, for the sake of better visualization, 
