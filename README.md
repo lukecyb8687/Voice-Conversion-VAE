@@ -3,8 +3,8 @@
 Voice conversion is a technique that converts the perceived identity of a speaker's utterance (source) into another speaker's utterance (target). In this project, inspired from the paper titled "Voice Conversion from Non-parallel Corpora Using Variational Auto-encoder" by Chin-Cheng Hsu, our team would focus on using **spectral conversion (SC) techniques**.
 
 Our project is divided into 2 seperate portions:
-..* Voice treatment
-..* Training of VAE model
+                    1. Voice treatment
+                    2. Training of VAE model
 
 
 # Prerequisites
