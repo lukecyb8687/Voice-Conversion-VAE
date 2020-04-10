@@ -14,7 +14,7 @@ Our project is divided into 2 seperate portions:
 - **pyworld** 👉 open sourced software for high quality speech analysis, manipulation and systhesis
 - **tensorflow** 👉 machine learning package that can train/run deep neural networks (NN)
 - **matplotlib** 👉  for graph plotting
-- **pandas** 
+- **pandas** 👉 to manipulate dataframes, a Python object that comes in handy when we manipulate large datasets
 
 # Data Provided
 
