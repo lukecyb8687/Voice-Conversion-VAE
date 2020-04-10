@@ -14,6 +14,7 @@ Our project is divided into 2 seperate portions:
 - **pyworld** 👉 open sourced software for high quality speech analysis, manipulation and systhesis
 - **tensorflow** 👉 machine learning package that can train/run deep neural networks (NN)
 - **matplotlib** 👉  for graph plotting
+- **pandas** 
 
 # Data Provided
 
@@ -29,7 +30,7 @@ FEAT_DIM = SP_DIM + SP_DIM + 1 + 1 + 1  # [sp, ap, f0, en, s]
 RECORD_BYTES = FEAT_DIM * 4 
 f0_ceil = 500
 ```
-## wav2pw function
+## wav2pw(...) function
 ```
 def wav2pw(x, fs=16000, fft_size=FFT_SIZE):
     _f0, timeaxis = pw.dio(x, fs, f0_ceil = f0_ceil) # _f0 = Raw pitch
@@ -43,4 +44,23 @@ def wav2pw(x, fs=16000, fft_size=FFT_SIZE):
     }
     
 ```
-The pyworld package and its subpackages (stonemask, cheaptrick and d4c) would return the spectral envelope (SP), aperiodocity (AP),  fundamental frequency (f0) of the specified {}.wav file. The f0 ceiling is set such that we only filter the lower frequencies.  There would be 513 instances of SP and 513 instances of AP.
+The pyworld package and its subpackages (dio, stonemask, cheaptrick and d4c) would return the spectral envelope (SP), aperiodocity (AP),  fundamental frequency (f0) of the specified {}.wav file. The f0 ceiling is set such that we only filter the lower frequencies.  There would be 513 instances of SP and 513 instances of AP.
+
+## analysis(...) function
+```
+def analysis(filename, fft_size=FFT_SIZE, dtype=np.float32):
+    ''' Basic (WORLD) feature extraction ''' 
+    fs = 16000
+    x, _ = librosa.load(filename, sr=fs, mono=True, dtype=np.float64) #audio time series, sampling rate
+    features = wav2pw(x, fs=16000, fft_size=fft_size)
+    ap = features['ap']
+    f0 = features['f0'].reshape([-1, 1]) #rows = unknown, columns = 1
+    sp = features['sp']
+    en = np.sum(sp + EPSILON, axis=1, keepdims=True) # Normalizing Factor
+    sp_r = np.log10(sp / en) # Refined Spectrogram Normalization
+    target = np.concatenate([sp_r, ap, f0, en], axis=1).astype(dtype)
+    return target 
+```
+In this function, we use the *librosa* package to acquire the amplitude and sampling rate of the audio file. The amplitude is then being used by the *wav2pw()* module. We add in a normalizing factor (summation of SP + epsilon), and refined the spectrogram of the spectral envelope on a logarithm scale.
+
+Each single audio file would have a varying length of fundamental frequency depending on the length of the audio. For example: For SF1/100001.wav, we have 704 instances of f0. While for SF1/100002.wav, we have 216 instances of f0. This is because the audio duration for SF1/100001.wav is longer than SF1/100001.wav. However, the featured dimensions remain the same: For each instance of f0, we still have 513 instances of SP and 513 instances of AP.
