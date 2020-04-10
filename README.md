@@ -27,4 +27,20 @@ FFT_SIZE = 1024
 SP_DIM = FFT_SIZE // 2 + 1 
 FEAT_DIM = SP_DIM + SP_DIM + 1 + 1 + 1  # [sp, ap, f0, en, s] 
 RECORD_BYTES = FEAT_DIM * 4 
+f0_ceil = 500
 ```
+## wav2pw function
+```
+def wav2pw(x, fs=16000, fft_size=FFT_SIZE):
+    _f0, timeaxis = pw.dio(x, fs, f0_ceil = f0_ceil) # _f0 = Raw pitch
+    f0 = pw.stonemask(x, _f0, timeaxis, fs)  # f0 = Refined pitch
+    sp = pw.cheaptrick(x, f0, timeaxis, fs, fft_size=fft_size) # sp = spectogram spectral smoothing
+    ap = pw.d4c(x, f0, timeaxis, fs, fft_size=fft_size) # extract aperiodicity
+    return {
+      'f0': f0,
+      'sp': sp,
+      'ap': ap,
+    }
+    
+```
+The pyworld package and its subpackages (stonemask, cheaptrick and d4c) would return the spectral envelope (SP), aperiodocity (AP),  fundamental frequency (f0) of the specified {}.wav file. The f0 ceiling is set such that we only filter the lower frequencies.  There would be 513 instances of SP and 513 instances of AP.
