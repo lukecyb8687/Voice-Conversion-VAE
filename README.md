@@ -89,3 +89,6 @@ The proposed method in the reference paper inspires the reference of the anagolo
 | Number of hidden layers | Number of nodes per hidden layer | Latent space size | Size of mini-batch |
 |:-----------------------:|:--------------------------------:|-------------------|--------------------|
 |            2            |                512               |         64        |         128        |
+
+## Inference and learning
+We aim to conduct Maximum likelihood learning, by maximizing the log likelihood of data in our model: *max* log p<sub>theta</sub> (X)
