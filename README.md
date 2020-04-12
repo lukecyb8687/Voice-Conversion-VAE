@@ -95,4 +95,4 @@ We aim to conduct Maximum likelihood learning, by maximizing the log likelihood 
 
 Computing this marginal likelihood of observation *x* is difficult as the joint likelihood model is given by: *p*<sub>θ</sub> (*x,z*) = *p*<sub>θ</sub> (*x|z*) p(*z*), where the term of the left is known as the latent representation.
 
-Since directly optimizing log *p*<sub>theta</sub> (*x*) is infeasible, we will choose to optimize a lower bound of it (by splitting it into a reconstruction loss term and a KL-divergence loss term). This lower bound is called the Evidence Lower Bound (ELBO). To fit the keras model, instead of maximizing the ELBO, we would minimize the NELBO (Negative ELBO).
+Since directly optimizing log *p*<sub>θ</sub> (*x*) is infeasible, we will choose to optimize a lower bound of it (by splitting it into a reconstruction loss term and a KL-divergence loss term). This lower bound is called the Evidence Lower Bound (ELBO). To fit the keras model, instead of maximizing the ELBO, we would minimize the NELBO (Negative ELBO).
