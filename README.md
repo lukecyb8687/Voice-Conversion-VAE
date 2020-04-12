@@ -85,6 +85,7 @@ The proposed method in the reference paper inspires the reference of the anagolo
 - Training a VAE is pointwise. Both the *souce* and *target* spectral frames will not be segregated as input and output. Both would be viewed as an input.
 - The input into the encoder is the concantenation of both the spectral frames and the speaker identity. The encoder recieves frames from both the source and the target, hence it has the ability of speaker-independent encoding.
 - VAE parameters:
+
 | Number of hidden layers | Number of nodes per hidden layer | Latent space size | Size of mini-batch |
 |:-----------------------:|:--------------------------------:|-------------------|--------------------|
 |            2            |                512               |         64        |         128        |
