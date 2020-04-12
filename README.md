@@ -71,3 +71,10 @@ For example, in SF1/100002.wav, for a f0 = 212.431344 Hz, the spectral envelope 
 
 Due to the large amount of data to process, and to allow our VAE model to run faster, we converted the featured dimensions of each {}.wav file into a {}.bin binary file.
 
+# VAE Model
+The proposed method in the reference paper inspires the reference of the anagolous work of generating hand-written digits (MNIST dataset). This reference work attempts to extract writing style and digit identity from a vast image of handwriting and to re-synthesis such image. Drawing parallels, the 2 casual latent variables are **identity** and **variation**:
+
+|                    | Variation          | Identity        |
+|--------------------|--------------------|-----------------|
+| Hand-written digit | Hand-writing style | Nominal number  |
+| Speech Frame       | Phonetic content   | Speaking source |
