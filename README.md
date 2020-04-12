@@ -91,4 +91,6 @@ The proposed method in the reference paper inspires the reference of the anagolo
 |            2            |                512               |         64        |         128        |
 
 ## Inference and learning
-We aim to conduct Maximum likelihood learning, by maximizing the log likelihood of data in our model: *max* log p<sub>theta</sub> (X)
+We aim to conduct Maximum likelihood learning, by maximizing the log likelihood of data in our model: **max** log *p*<sub>theta</sub> (*x*), where *p*<sub>theta</sub> (*x*) is known as the marginal likelihood of observation *x*. 
+
+Computing this marginal likelihood of observation *x* is difficult as the joint likelihood model is given by: *p*<sub>theta</sub> (*x,z*) = *p*<sub>theta</sub> (*x|z*) p(*z*), where the term of the left is known as the latent representation.
