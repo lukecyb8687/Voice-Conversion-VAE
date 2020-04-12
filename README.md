@@ -22,14 +22,14 @@ We are using the utterances provided from the VCC2016 dataset. This dataset cons
 
 # Voice Treatment
 ## Parameters used
-```
-EPSILON = 1e-10
-FFT_SIZE = 1024
-SP_DIM = FFT_SIZE // 2 + 1 
-FEAT_DIM = SP_DIM + SP_DIM + 1 + 1 + 1  # [sp, ap, f0, en, s] 
-RECORD_BYTES = FEAT_DIM * 4 
-f0_ceil = 500
-```
+
+| epsilon | FFT size | Spectral envelope dimension | features dimension   | f0 ceiling |
+|:-------:|:--------:|-----------------------------|----------------------|------------|
+|    2    |   1024   |             512             | 512+512+1+1+1 = 1029 | 500 Hz     |
+
+The selected FFT size (defined = 1024) would determine the resolution of the resulting spectra. The number of spectral lines is **half** the FFT size. Hence, the spectral envelope has 512 spectral lines. The resolution of each spectral lines is = sampling rate/FFT_size = 16000//1024 = approximately 15 Hz. 
+Larger FFT size would hence provide higher resolution, but would take a longer time to compute.
+
 ## wav2pw(...) function
 ```
 def wav2pw(x, fs=16000, fft_size=FFT_SIZE):
