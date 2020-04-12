@@ -91,6 +91,8 @@ The proposed method in the reference paper inspires the reference of the anagolo
 |            2            |                512               |         64        |         128        |
 
 ## Inference and learning
-We aim to conduct Maximum likelihood learning, by maximizing the log likelihood of data in our model: **max** log *p*<sub>theta</sub> (*x*), where *p*<sub>theta</sub> (*x*) is known as the marginal likelihood of observation *x*. 
+We aim to conduct Maximum likelihood learning, by maximizing the log likelihood of data in our model: **max** log *p*<sub>theta</sub> (*x*), where *p*<sub>θ</sub> (*x*) is known as the marginal likelihood of observation *x*, and θ is the model parameter.
 
-Computing this marginal likelihood of observation *x* is difficult as the joint likelihood model is given by: *p*<sub>theta</sub> (*x,z*) = *p*<sub>theta</sub> (*x|z*) p(*z*), where the term of the left is known as the latent representation.
+Computing this marginal likelihood of observation *x* is difficult as the joint likelihood model is given by: *p*<sub>θ</sub> (*x,z*) = *p*<sub>θ</sub> (*x|z*) p(*z*), where the term of the left is known as the latent representation.
+
+Since directly optimizing log *p*<sub>theta</sub> (*x*) is infeasible, we will choose to optimize a lower bound of it (by splitting it into a reconstruction loss term and a KL-divergence loss term). This lower bound is called the Evidence Lower Bound (ELBO). To fit the keras model, instead of maximizing the ELBO, we would minimize the NELBO (Negative ELBO).
