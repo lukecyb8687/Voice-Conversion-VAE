@@ -31,7 +31,7 @@ from keras.utils import to_categorical
 import seaborn as sns
 
 
-import voicetreatment
+import voiceTreatment
 
 def voiceVAE(filename_source, filename_target, FFT_SIZE=1024, batch_size = 128, no_epochs = 50, validation_split = 0.2, verbosity = 1, latent_dim_voice = 128, num_channels = 1):
 '''
@@ -55,14 +55,14 @@ OUTPUTS:
       features = []
       files = tf.gfile.Glob(filename_source)
       for elem in files:
-        save = voicetreatment.analysis(elem, fft_size=FFT_SIZE, dtype=np.float32)
+        save = voiceTreatment.analysis(elem, fft_size=FFT_SIZE, dtype=np.float32)
         for i in range(len(save)//100):
           features.append([save[i][0:513], 'SF1'])
 
       ## Adding in additional data for TM1
       files2 = tf.gfile.Glob(filename_target)
       for elem in files2:
-        save = voicetreatment.analysis(elem, fft_size=FFT_SIZE, dtype=np.float32)
+        save = voiceTreatment.analysis(elem, fft_size=FFT_SIZE, dtype=np.float32)
         for i in range(len(save)//100):
           features.append([save[i][0:513], 'TM1'])
 
