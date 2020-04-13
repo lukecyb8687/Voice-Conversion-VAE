@@ -39,7 +39,7 @@ We are using the utterances provided from the VCC2016 dataset. This dataset cons
 
 | epsilon | FFT size | Spectral envelope dimension | features dimension   | f0 ceiling |
 |:-------:|:--------:|-----------------------------|----------------------|------------|
-|    2    |   1024   |             512             | 512+512+1+1+1 = 1029 | 500 Hz     |
+|    2    |   1024   |             513             | 513+513+1+1+1 = 1029 | 500 Hz     |
 
 The selected FFT size (defined = 1024) would determine the resolution of the resulting spectra. The number of spectral lines is **half** the FFT size. Hence, the spectral envelope has 512 spectral lines. The resolution of each spectral lines is = sampling rate/FFT_size = 16000//1024 = approximately 15 Hz. 
 Larger FFT size would hence provide higher resolution, but would take a longer time to compute.
