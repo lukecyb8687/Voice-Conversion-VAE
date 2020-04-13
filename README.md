@@ -5,6 +5,20 @@ Voice conversion is a technique that converts the perceived identity of a speake
 Our project is divided into 2 seperate portions:
                     1. **Voice treatment**
                     2. **Training of VAE model**
+                    
+# Architecture
+
+Below is the architecture of our project:
+- 📑 voiceTreatment.py
+- 📁 modules
+  - 📑 voiceVaeModel.py
+  - 📑 voicetreatment.py
+ - 📁 raw
+  - 📑 SPexample.png
+- 📑 README.md
+- 📑 mnistVAE.ipynb
+- 📑 sideComparisonVAE.ipynb
+- 📑 voiceTreatment.py
 
 
 # Prerequisites
@@ -79,6 +93,8 @@ The proposed method in the reference paper inspires the reference of the anagolo
 | Hand-written digit | Hand-writing style | Nominal number  |
 | Speech Frame       | Phonetic content   | Speaking source |
 
+The architecture of the encoder, decoder and VAE model can be doung in the *sideComparisonVAE.ipynb* file. 
+
 ## Training Procedure
 
 - Training a VAE involves sampling from a distribution of a latent variable *z*. Therefore, we introduce a re-parametrization trick to introduce stochasticity into this latent variable. 
@@ -96,3 +112,17 @@ We aim to conduct Maximum likelihood learning, by maximizing the log likelihood 
 Computing this marginal likelihood of observation *x* is difficult as the joint likelihood model is given by: *p*<sub>θ</sub> (*x,z*) = *p*<sub>θ</sub> (*x|z*) p(*z*), where the term of the left is known as the latent representation.
 
 Since directly optimizing log *p*<sub>θ</sub> (*x*) is infeasible, we will choose to optimize a lower bound of it (by splitting it into a reconstruction loss term and a KL-divergence loss term). This lower bound is called the Evidence Lower Bound (ELBO). To fit the keras model, instead of maximizing the ELBO, we would minimize the NELBO (Negative ELBO).
+
+# VII. Acknowledgements
+- Inspired by https://github.com/JeremyCCHsu/vae-npvc
+- Guided by https://blog.keras.io/building-autoencoders-in-keras.html
+
+# VIII. License
+
+_This project is licensed under the terms of the CentraleSupélec license_.
+
+Reproduction and modifications are allowed as long as there is a **mention** of either of the contributors or of this repository.
+
+# IX. Contributors
+
+- **Yun Bin Choh** - _Student @ CentraleSupélec_ - [lukecyb8687](https://github.com/lukecyb8687)
