@@ -5,7 +5,9 @@ Voice conversion is a technique that converts the perceived identity of a speake
 Our project is divided into 2 seperate portions:
                     1. **Voice treatment**
                     2. **Training of VAE model**
-                    
+
+The aim of this git, is to allow users to have a comprehensive view towards how VAE can be used not only to treat MNIST data, but also phonetic content from voice files as well. Hence, **please refer to the sideComparisonVAE.ipynb** to have an overview of a side-by-side comparison on how we approach both MNIST data as well as phonetic content (spectral envelope) of voice files.
+
 # Architecture
 
 Below is the architecture of our project:
