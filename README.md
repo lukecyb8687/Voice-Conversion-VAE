@@ -9,7 +9,6 @@ Our project is divided into 2 seperate portions:
 # Architecture
 
 Below is the architecture of our project:
-- 📑 voiceTreatment.py
 - 📁 modules
   - 📑 voiceVaeModel.py
   - 📑 voicetreatment.py
@@ -18,7 +17,7 @@ Below is the architecture of our project:
 - 📑 README.md
 - 📑 mnistVAE.ipynb
 - 📑 sideComparisonVAE.ipynb
-- 📑 voiceTreatment.py
+- 📑 voiceTreatment.ipynb
 
 
 # Prerequisites
