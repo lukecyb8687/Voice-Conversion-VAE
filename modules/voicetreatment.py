@@ -26,12 +26,6 @@ import pyworld as pw
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-# Load the Drive helper and mount
-from google.colab import drive
-
-# This will prompt for authorization.
-drive.mount('/content/drive')
-
 """# **Parameters**"""
 
 EPSILON = 1e-10
@@ -78,46 +72,4 @@ def analysis(filename, fft_size=FFT_SIZE, dtype=np.float32):
     sp_r = np.log10(sp / en) # Refined Spectrogram Normalization
     target = np.concatenate([sp_r, ap, f0, en], axis=1).astype(dtype)
     return target #add elements together based on position. Target for this file has 704 rows and 1028 columns
-
-"""# **Example (Visualization of Spectral Envelope)**"""
-
-filename1 = '/content/drive/My Drive/dataset/vcc2016/wav/Training Set/SF1/100002.wav'
-a = analysis(filename1, fft_size=FFT_SIZE, dtype=np.float32)
-x, _ = librosa.load(filename1, sr=16000, mono=True, dtype=np.float64)
-b =wav2pw(x, fs=16000, fft_size=FFT_SIZE)
-
-print(" Example: At a fundamental frequency of:", b['f0'][38], "Hz, The spectral envelope is as shown:", plt.plot(b['sp'][38]))
-
-import pandas as pd
-
-df = pd.read_csv('/content/feature.csv')
-df.head()
-
-for i in range(len(df['feature'])):
-  df['feature'][i] = df['feature'][i].replace('[','')
-  df['feature'][i] = df['feature'][i].replace(']','')
-  df['feature'][i] = df['feature'][i].split()
-  df['feature'][i] = [float(j) for j in df['feature'][i]]
-  df['feature'][i] = np.array([item for item in df['feature'][i] if not isinstance(item,list)])
-
-df['feature']
-
-
-
-valid = df.sample(n = 150, random_state = 1)
-train = df.loc[~df.index.isin(valid.index)]
-
-X_train = train.drop(['class_label'], axis = 1)
-X_train = X_train.drop(['Unnamed: 0'], axis = 1)
-
-X_valid = valid.drop(['class_label'], axis = 1)
-X_valid = X_valid.drop(['Unnamed: 0'], axis = 1)
-
-# labels
-y_train = train['class_label']
-y_valid = valid['class_label']
-
-X_train.values[0]
-
--2/(2/8)
 
