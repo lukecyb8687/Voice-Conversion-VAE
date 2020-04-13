@@ -124,3 +124,4 @@ Reproduction and modifications are allowed as long as there is a **mention** of 
 # IX. Contributors
 
 - **Yun Bin Choh** - _Student @ CentraleSupélec_ - [lukecyb8687](https://github.com/lukecyb8687)
+- **Si Jie Tang**  - _Student @ CentraleSupélec_ -[lamartang123](https://github.com/lamartang123)
