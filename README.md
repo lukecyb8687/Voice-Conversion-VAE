@@ -12,8 +12,7 @@ Below is the architecture of our project:
 - 📁 modules
   - 📑 voiceVaeModel.py
   - 📑 voicetreatment.py
- - 📁 raw
-  - 📑 SPexample.png
+
 - 📑 README.md
 - 📑 mnistVAE.ipynb
 - 📑 sideComparisonVAE.ipynb
