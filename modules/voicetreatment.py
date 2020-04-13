@@ -8,6 +8,11 @@ Original file is located at
 
 # **Dependencies**
 """
+# Commented out IPython magic to ensure Python compatibility.
+"""
+Created on Mon Apr 9 05:30:42 2020
+@author: yun bin choh
+"""
 
 import librosa
 from scipy.io import wavfile
